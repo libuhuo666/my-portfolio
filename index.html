@@ -64,28 +64,51 @@
             background: #1a1a1a;
         }
         .qq-icon {
-            width: 40px;
-            height: 40px;
+            width: 10vw; /* 相对单位，适应不同屏幕 */
+            height: 10vw;
+            max-width: 40px; /* 限制最大宽度 */
+            max-height: 40px; /* 限制最大高度 */
             margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            p, .social-links a, .qq-link {
+                font-size: 1em;
+            }
         }
     </style>
     <script>
         function openQQ() {
-            var qqNumber = "1252877057"; // 你的 QQ 号
+            var qqNumber = "1252877057"; // 修改后的 QQ 号
             var qqMobileLink = "https://qm.qq.com/cgi-bin/qm/qr?k=7cIfj3wZUnSp1IT4YhAKmPiNsBiLzC2U"; // 你的 QQ 好友添加链接
             var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            var isWechat = /MicroMessenger/i.test(navigator.userAgent);  // 检测是否是微信内置浏览器
 
-            if (isMobile) {
-                // 手机端打开 QQ 添加好友页面（网页版）
-                window.location.href = qqMobileLink;
-            } else {
-                // 电脑端尝试使用 QQ 客户端协议
+            // 尝试使用 QQ 客户端协议
+            try {
                 window.location.href = "tencent://message/?uin=" + qqNumber + "&Site=QQ&Menu=yes";
-                // 1 秒后回退（如果 QQ 未安装）
-                setTimeout(function() {
-                    window.location.href = qqMobileLink;
-                }, 1000);
+            } catch (e) {
+                // 如果调用失败，跳转到网页版
+                window.location.href = qqMobileLink;
             }
+
+            // 对于微信浏览器内，跳转到网页版
+            if (isWechat) {
+                window.location.href = qqMobileLink;
+            }
+
+            // 手机端尝试打开 QQ 添加好友的页面
+            if (isMobile && !isWechat) {
+                window.location.href = qqMobileLink;
+            }
+
+            // 延时 1 秒，避免弹出协议失败后重定向到网页版
+            setTimeout(function() {
+                window.location.href = qqMobileLink;
+            }, 1000);
         }
     </script>
 </head>
