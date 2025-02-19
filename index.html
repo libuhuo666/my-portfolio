@@ -62,82 +62,12 @@
             padding: 20px;
             background: #1a1a1a;
         }
-        /* 动态背景 */
-        .background-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        .background-animation span {
-            position: absolute;
-            display: block;
-            width: 20px;
-            height: 20px;
-            background: rgba(0, 212, 255, 0.5);
-            animation: move 10s linear infinite;
-        }
-        @keyframes move {
-            from {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            to {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
     </style>
-</head>
-<body>
-    <div class="background-animation">
-        <!-- 生成多个动画元素 -->
-        <script>
-            for (let i = 0; i < 30; i++) {
-                let span = document.createElement("span");
-                span.style.left = Math.random() * 100 + "vw";
-                span.style.animationDuration = Math.random() * 5 + 5 + "s";
-                span.style.width = span.style.height = Math.random() * 10 + 10 + "px";
-                document.querySelector(".background-animation").appendChild(span);
-            }
-        </script>
-    </div>
+    <script>
+        function openQQ() {
+            var qqNumber = "1252877057"; // 你的 QQ 号
+            var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    <div class="container">
-        <h1>欢迎来到我的个人作品展示</h1>
-        <p>探索我的项目，并通过以下方式联系我</p >
-
-        <div class="social-links">
-            GitHub
-            
-            
-        </div>
-
-        <div class="projects">
-            <h2>我的项目</h2>
-            <div class="project">
-                <h3>项目 1</h3>
-                <p>项目描述，可以介绍主要功能和技术栈。</p >
-                
-            </div>
-            <div class="project">
-                <h3>项目 2</h3>
-                <p>另一个项目的简要介绍。</p >
-                
-            </div>
-        </div>
-
-        <div class="contact">
-            <p>📩 联系方式: </p >
-            <a class="qq-link" href="tencent://message/?uin=1252877057&Site=QQ&Menu=yes">📲 点击添加我的 QQ</a >
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>© 2025 个人作品展示 | 设计 & 开发</p >
-    </div>
-</body>
-</html>
+            if (isMobile) {
+                // 手机端跳转到 QQ 在线聊天网页
+                window.location.href = "https://qm.qq.com/cgi-bin/qm/qr?k=7cIfj3wZUnSp1
