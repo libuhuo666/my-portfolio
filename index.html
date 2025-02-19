@@ -12,6 +12,8 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            overflow: hidden;
+            position: relative;
         }
         .container {
             width: 80%;
@@ -21,15 +23,25 @@
         h1 {
             font-size: 2.5em;
             color: #00d4ff;
+            text-shadow: 0 0 10px #00d4ff;
         }
         p {
             font-size: 1.2em;
         }
-        .social-links a {
+        .social-links a, .qq-link {
+            display: inline-block;
             color: #00d4ff;
-            margin: 0 15px;
+            margin: 10px;
             text-decoration: none;
             font-size: 1.5em;
+            padding: 10px 20px;
+            border: 2px solid #00d4ff;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .social-links a:hover, .qq-link:hover {
+            background: #00d4ff;
+            color: #0d0d0d;
         }
         .projects {
             margin-top: 50px;
@@ -50,9 +62,50 @@
             padding: 20px;
             background: #1a1a1a;
         }
+        /* 动态背景 */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .background-animation span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: rgba(0, 212, 255, 0.5);
+            animation: move 10s linear infinite;
+        }
+        @keyframes move {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <div class="background-animation">
+        <!-- 生成多个动画元素 -->
+        <script>
+            for (let i = 0; i < 30; i++) {
+                let span = document.createElement("span");
+                span.style.left = Math.random() * 100 + "vw";
+                span.style.animationDuration = Math.random() * 5 + 5 + "s";
+                span.style.width = span.style.height = Math.random() * 10 + 10 + "px";
+                document.querySelector(".background-animation").appendChild(span);
+            }
+        </script>
+    </div>
+
     <div class="container">
         <h1>欢迎来到我的个人作品展示</h1>
         <p>探索我的项目，并通过以下方式联系我</p >
@@ -79,6 +132,7 @@
 
         <div class="contact">
             <p>📩 联系方式: </p >
+            <a class="qq-link" href="tencent://message/?uin=1152877057&Site=QQ&Menu=yes">📲 点击添加我的 QQ</a >
         </div>
     </div>
 
